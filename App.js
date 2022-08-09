@@ -7,7 +7,9 @@ import {
   View,
   TextInput,
   StatusBar,
+  Dimensions,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -50,19 +52,20 @@ export default function App() {
           </View>
         ) : (
           <ScrollView style={styles.scrollContainer}>
-            <View style={styles.itemConstainer} key={index}>
-              <Text style={styles.textItem}>
-                {list.length - index} - {i}
-                {""}
-              </Text>
-              <TouchableOpacity
-                style={styles.buttonRemove}
-                onPress={() => removeItem(index)}
-              >
-                <Icon name="window-close" color="#fff" size={15} />
-              </TouchableOpacity>
-            </View>
-            ))
+            {list.map(() => (
+              <View style={styles.itemConstainer} key={index}>
+                <Text style={styles.textItem}>
+                  {list.length - index} - {i}
+                  {""}
+                </Text>
+                <TouchableOpacity
+                  style={styles.buttonRemove}
+                  onPress={() => removeItem(index)}
+                >
+                  <Icon name="window-close" color="#fff" size={15} />
+                </TouchableOpacity>
+              </View>
+            ))}
           </ScrollView>
         )}
       </View>
