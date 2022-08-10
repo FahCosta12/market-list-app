@@ -15,26 +15,26 @@ const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
 export default function App() {
-  const [item, setItem] = useState < string > "";
-  const [list, setList] = useState < string > [];
+  const [item, setItem] = useState("");
+  const [list, setList] = useState([]);
 
   const addItem = () => {
     if (item.length > 0) {
-      setList((current) => [item, ...current]);
+      setList((current) => [...current, item]);
       setItem("");
     }
   };
 
-  const removeItem = () => {
+  const removeItem = (index) => {
     setList((current) => current.filter((e, i) => i !== index));
   };
 
   return (
     <>
-      <StatusBar backgroundColor="#ff5969" barStyle="dark-content" />
+      <StatusBar backgroundColor="#EFE4B0" barStyle="dark-content" />
       <View style={styles.container}>
         <Text style={styles.title}>Market List</Text>
-        <View>
+        <View style={styles.textContainer}>
           <TextInput
             style={styles.textField}
             value={item}
@@ -48,15 +48,14 @@ export default function App() {
         {list.length === 0 ? (
           <View style={styles.emptyListContainer}>
             <Text style={styles.textEmptyList}>List's empty</Text>
-            <Icon name="playlist-remove" color="#4f4f" size={40} />
+            <Icon name="playlist-remove" color="#444fff" size={40} />
           </View>
         ) : (
           <ScrollView style={styles.scrollContainer}>
-            {list.map(() => (
+            {list.map((i, index) => (
               <View style={styles.itemConstainer} key={index}>
                 <Text style={styles.textItem}>
-                  {list.length - index} - {i}
-                  {""}
+                  {index + 1} - {i}
                 </Text>
                 <TouchableOpacity
                   style={styles.buttonRemove}
@@ -76,13 +75,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ff5969",
+    backgroundColor: "#EFE4B0",
     alignItems: "center",
     justifyContent: "center",
   },
 
   title: {
     fontSize: 26,
+    padding: 20,
   },
 
   textContainer: {
@@ -100,16 +100,17 @@ const styles = StyleSheet.create({
   textEmptyList: {
     color: "#4f4f4f",
     fontSize: 25,
-    marginRight: 15,
+    marginRight: 10,
   },
 
   textField: {
     height: 50,
     width: width - 100,
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 15,
     padding: 10,
     fontSize: 20,
+    backgroundColor: "#fff",
   },
 
   buttonAdd: {
@@ -117,9 +118,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 50,
     height: 50,
-    backgroundColor: "#1ED760",
+    backgroundColor: "#444fff",
     borderRadius: 100,
     marginLeft: 10,
+    marginVertical: 20,
+    marginTop: 1,
   },
 
   buttonRemove: {
