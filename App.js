@@ -7,7 +7,6 @@ import {
   TextInput,
   StatusBar,
   Dimensions,
-  KeyboardAvoidingView,
 } from "react-native";
 import { useState } from "react";
 import React from "react";
