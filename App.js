@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -8,7 +7,10 @@ import {
   TextInput,
   StatusBar,
   Dimensions,
+  KeyboardAvoidingView,
 } from "react-native";
+import { useState } from "react";
+import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const width = Dimensions.get("window").width;
@@ -31,13 +33,16 @@ export default function App() {
 
   return (
     <>
-      <StatusBar backgroundColor="#EFE4B0" barStyle="dark-content" />
+      <StatusBar backgroundColor="#d3d3d3" barStyle="dark-content" />
+
       <View style={styles.container}>
         <Text style={styles.title}>Market List</Text>
         <View style={styles.textContainer}>
           <TextInput
             style={styles.textField}
             value={item}
+            autoCorrect={true}
+            autoCapitalize="sentences"
             onChangeText={(e) => setItem(e)}
             placeholder="Enter the item"
           />
@@ -82,7 +87,11 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 26,
-    padding: 20,
+    color: "#fff",
+    fontWeight: "bold",
+    padding: 15,
+    paddingHorizontal: 114,
+    backgroundColor: "#444fff",
   },
 
   textContainer: {
