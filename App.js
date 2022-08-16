@@ -7,9 +7,9 @@ import {
   TextInput,
   StatusBar,
   Dimensions,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useState } from "react";
-import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const width = Dimensions.get("window").width;
@@ -36,19 +36,23 @@ export default function App() {
 
       <View style={styles.container}>
         <Text style={styles.title}>Market List</Text>
-        <View style={styles.textContainer}>
-          <TextInput
-            style={styles.textField}
-            value={item}
-            autoCorrect={true}
-            autoCapitalize="sentences"
-            onChangeText={(e) => setItem(e)}
-            placeholder="Enter the item"
-          />
-          <TouchableOpacity style={styles.buttonAdd} onPress={addItem}>
-            <Icon name="plus" color="#fff" size={20} />
-          </TouchableOpacity>
-        </View>
+        <KeyboardAvoidingView behavior="padding">
+          <View style={styles.textContainer}>
+            <TextInput
+              style={styles.textField}
+              value={item}
+              autoCorrect={true}
+              autoCapitalize="sentences"
+              onChangeText={(e) => setItem(e)}
+              placeholder="Enter the item"
+            />
+
+            <TouchableOpacity style={styles.buttonAdd} onPress={addItem}>
+              <Icon name="plus" color="#fff" size={20} />
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
+
         {list.length === 0 ? (
           <View style={styles.emptyListContainer}>
             <Text style={styles.textEmptyList}>List's empty</Text>
